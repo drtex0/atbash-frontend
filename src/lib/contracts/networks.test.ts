@@ -10,13 +10,13 @@ describe('#getProviderURL', () => {
     });
 
     it('throws if provider url is not defined', () => {
-        (process.env as any).REACT_APP_INFURA_ENDPOINT_URL = '';
+        (process.env as any).REACT_APP_NETWORK_RPC_URL = '';
 
         expect(() => getProviderURL(1)).toThrowError('No provider endpoint url');
     });
 
     it('returns the url', () => {
-        (process.env as any).REACT_APP_INFURA_ENDPOINT_URL = 'http://url';
+        (process.env as any).REACT_APP_NETWORK_RPC_URL = 'http://url';
 
         expect(getProviderURL(1)).toEqual('http://url');
     });

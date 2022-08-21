@@ -13,6 +13,6 @@ jest.mock('react-i18next', () => ({
 }));
 process.env = Object.assign(process.env, {
     REACT_APP_DEFAULT_NETWORK_ID: '1',
-    REACT_APP_INFURA_ENDPOINT_URL: 'https://ropsten.infura.io/v3/',
+    REACT_APP_NETWORK_RPC_URL: 'https://ropsten.infura.io/v3/',
     REACT_APP_NETWORK_RPC_URL: 'https://ropsten.infura.io/v3/',
 });
