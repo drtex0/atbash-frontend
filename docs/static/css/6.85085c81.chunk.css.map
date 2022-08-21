@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/views/Bond/BondList/bondlist.scss"],"names":[],"mappings":"AAAA,gBACE,eAAA","file":"6.85085c81.chunk.css","sourcesContent":[".BondList__card {\n  margin-top: 2rem;\n}"]}
