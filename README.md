@@ -1,6 +1,18 @@
 # [Atbash Frontend](https://atbash.finance/)
 
-This is the front-end repo for Atbash Protocol.
+Project made for Atbash Protocol team using :
+
+-   Typescript
+-   React 16
+-   Jest
+-   Ethers.js
+-   Redux
+-   Context
+-   MUI V5
+
+## Access :
+
+https://drtex0.github.io/atbash-frontend/
 
 ## Config
 
