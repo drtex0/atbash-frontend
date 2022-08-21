@@ -3,7 +3,7 @@ name: CI/CD
 on:
     push:
         branches:
-            - main
+            - staging
     pull_request:
         branches:
             - '**'
@@ -32,16 +32,15 @@ jobs:
               run: yarn lint
 
             - name: Test
-              env:
-                  REACT_APP_DEFAULT_NETWORK_ID: { { secrets.REACT_APP_DEFAULT_NETWORK_ID } }
-                  REACT_APP_INFURA_ENDPOINT_URL: { { secrets.REACT_APP_NETWORK_RPC_URL } }
+              env: 
+                REACT_APP_DEFAULT_NETWORK_ID: ${{ secrets.REACT_APP_DEFAULT_NETWORK_ID }}
+                REACT_APP_INFURA_ENDPOINT_URL: ${{ secrets.REACT_APP_NETWORK_RPC_URL }}
               run: yarn test
 
             - name: Build
               run: yarn build
-              env:
-                  REACT_APP_DEFAULT_NETWORK_ID: { { secrets.REACT_APP_DEFAULT_NETWORK_ID } }
-                  REACT_APP_INFURA_ENDPOINT_URL: { { secrets.REACT_APP_NETWORK_RPC_URL } }
+                REACT_APP_DEFAULT_NETWORK_ID: ${{ secrets.REACT_APP_DEFAULT_NETWORK_ID }}
+                REACT_APP_INFURA_ENDPOINT_URL: ${{ secrets.REACT_APP_NETWORK_RPC_URL }}
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@v4
