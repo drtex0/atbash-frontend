@@ -1,42 +1,49 @@
 name: CI/CD
 
 on:
-  push:
-    branches: 
-      - main
-  pull_request:
-    branches:
-      - '**'
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - '**'
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
 
-    strategy:
-      matrix:
-        node-version: [16.x]
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+            - name: Set up Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+            - name: Install dependencies
+              run: yarn install
 
-    - name: Install dependencies
-      run: yarn install
+            - name: Linter
+              run: yarn lint
 
-    - name: Linter
-      run: yarn lint
+            - name: Test
+              env:
+                  REACT_APP_DEFAULT_NETWORK_ID: { { secrets.REACT_APP_DEFAULT_NETWORK_ID } }
+                  REACT_APP_INFURA_ENDPOINT_URL: { { secrets.REACT_APP_NETWORK_RPC_URL } }
+              run: yarn test
 
-    - name: Test
-      env:
-        REACT_APP_DEFAULT_NETWORK_ID: 4
-        REACT_APP_INFURA_ENDPOINT_URL: "http://infura.io"
-      run: yarn test
+            - name: Build
+              run: yarn build
+              env:
+                  REACT_APP_DEFAULT_NETWORK_ID: { { secrets.REACT_APP_DEFAULT_NETWORK_ID } }
+                  REACT_APP_INFURA_ENDPOINT_URL: { { secrets.REACT_APP_NETWORK_RPC_URL } }
 
-    - name: Build
-      run: yarn build
+            - name: Deploy
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  folder: build # The folder the action should deploy.
