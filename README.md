@@ -1,6 +1,20 @@
-# [Atbash Frontend](https://atbash.finance/)
+# [Atbash Frontend](https://630291d25f31e4554305e9a0--magenta-ganache-ba9fe4.netlify.app/)
 
 This is the front-end repo for Atbash Protocol.
+
+[Website](https://630291d25f31e4554305e9a0--magenta-ganache-ba9fe4.netlify.app/)
+
+![image](https://user-images.githubusercontent.com/98310792/185809231-0b23e7e8-c333-4eab-8b87-6807a43582bd.png)
+
+## Dev of the app using : 
+- Typescript
+- React
+- Jest
+- Redux
+- Ethers
+- Web3Modal
+- MUI v5
+
 
 ## Config
 
